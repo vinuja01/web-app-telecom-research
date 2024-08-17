@@ -5,7 +5,7 @@ const SiteSchema = new mongoose.Schema({
   siteId: String,
   siteLocation: String,
   currentFaults: [String],
-  MaintenanceRecords: [String],
+  MaintainanceRecords: [String],
   Date: Date,
 });
 

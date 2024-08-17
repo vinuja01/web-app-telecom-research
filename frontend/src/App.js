@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Auth from "./components/Auth";
 import Dashboard from "./components/Dashboard";
+import "./App.css";
 
 function App() {
   const isAuthenticated = () => {
