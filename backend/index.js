@@ -6,6 +6,7 @@ const authRoutes = require("./routes/auth");
 const cors = require("cors");
 const employeeRoutes = require("./routes/employeeRoutes");
 const siteRoutes = require("./routes/siteRoutes");
+const userAssignRoutes = require("./routes/userAssignRoutes");
 
 const app = express();
 app.use(cors());
@@ -23,6 +24,7 @@ mongoose
 app.use("/auth", authRoutes);
 app.use("/employees", employeeRoutes);
 app.use("/sites", siteRoutes);
+app.use("/assignuser", userAssignRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
