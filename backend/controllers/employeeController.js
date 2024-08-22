@@ -77,7 +77,7 @@ exports.deleteEmployee = async (req, res) => {
   }
 };
 
-//bar chart get hours by location
+// get hours by location
 exports.getHoursByLocation = async (req, res) => {
   try {
     const { employeeId } = req.params;
@@ -89,7 +89,7 @@ exports.getHoursByLocation = async (req, res) => {
           totalHours: { $sum: "$hoursSpent" },
         },
       },
-      { $sort: { _id: 1 } }, // Sorting by siteLocation
+      { $sort: { _id: 1 } },
     ]);
     res.json(hoursByLocation);
   } catch (err) {
@@ -103,10 +103,10 @@ exports.getTotalVisitsByLocation = async (req, res) => {
       {
         $group: {
           _id: "$siteLocation",
-          totalVisits: { $sum: 1 }, // Increment by one for each document
+          totalVisits: { $sum: 1 },
         },
       },
-      { $sort: { _id: 1 } }, // Sorting by siteLocation
+      { $sort: { _id: 1 } },
     ]);
     res.json(visitsByLocation);
   } catch (err) {
@@ -120,14 +120,14 @@ exports.deleteTaskByIndex = async (req, res) => {
     const { employeeId, taskIndex } = req.params;
     const result = await Employee.updateOne(
       { employeeId: employeeId },
-      { $unset: { [`tasksDone.${taskIndex}`]: 1 } } // Unset the task at the specified index
+      { $unset: { [`tasksDone.${taskIndex}`]: 1 } }
     );
     if (result.modifiedCount === 0) {
       return res
         .status(404)
         .json({ message: "Task not found or already deleted." });
     }
-    // Clean up the array after removing the element
+
     await Employee.updateOne(
       { employeeId: employeeId },
       { $pull: { tasksDone: null } }

@@ -80,12 +80,12 @@ exports.getMaintenanceRecordsBySiteId = async (req, res) => {
     const { siteId } = req.params;
     const result = await Site.aggregate([
       { $match: { siteId: siteId } },
-      { $unwind: "$MaintainanceRecords" }, // Unwind the array of maintenance records
+      { $unwind: "$MaintainanceRecords" },
       {
         $group: {
           _id: "$siteId",
-          maintenanceRecords: { $push: "$MaintainanceRecords" }, // Aggregate all maintenance records into a single array
-          mostRecentDate: { $max: "$Date" }, // Optionally, gather the most recent date of maintenance
+          maintenanceRecords: { $push: "$MaintainanceRecords" },
+          mostRecentDate: { $max: "$Date" },
         },
       },
     ]);
@@ -99,7 +99,7 @@ exports.getMaintenanceRecordsBySiteId = async (req, res) => {
     res.json({
       siteId: result[0]._id,
       maintenanceRecords: result[0].maintenanceRecords,
-      date: result[0].mostRecentDate, // If you want to include the most recent maintenance date
+      date: result[0].mostRecentDate,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -110,7 +110,6 @@ exports.deleteMaintenanceRecordBySiteId = async (req, res) => {
   try {
     const { siteId, record } = req.params;
 
-    // Use updateMany to affect all documents with the specified siteId
     const result = await Site.updateMany(
       { siteId: siteId },
       { $pull: { MaintainanceRecords: record } }
