@@ -8,6 +8,7 @@ import {
 import Auth from "./components/Auth";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 function App() {
   const isAuthenticated = () => {
