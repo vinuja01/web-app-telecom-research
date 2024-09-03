@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.p-4.xl:ml-80.w-full {
+    /* Ensures that the main content is visible and positioned correctly */
+    margin-left: 320px; /* Adjust based on the width of your sidebar */
+    width: calc(100% - 320px); /* Adjust the width calculation as necessary */
+    padding: 16px; /* This corresponds to the 'p-4' class */
+  }
+  

@@ -15,7 +15,7 @@ router.get("/", getUniqueEmployeeList);
 router.get("/:employeeId/tasks", getTasksByEmployeeId);
 router.put("/:employeeId/update", updateEmployee);
 router.delete("/:employeeId/delete", deleteEmployee);
-router.get("/:employeeId/hoursByLocation", getHoursByLocation);
+router.get("/hoursByLocation/:employeeId", getHoursByLocation);
 router.get("/visits-by-location", getTotalVisitsByLocation);
 router.delete("/:employeeId/tasks/:taskIndex", deleteTaskByIndex);
 
