@@ -18,8 +18,6 @@ import PieChartComponent from "../EmployerCRUD/PieChart";
 import { ResponsiveContainer } from "recharts";
 import BarChartComponent from "../EmployerCRUD/BarChart";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
-
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
 
@@ -30,39 +28,6 @@ function SimpleDialog(props) {
   const handleListItemClick = (value) => {
     onClose(value);
   };
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          <ListItem disableGutters key={email}>
-            <ListItemButton onClick={() => handleListItemClick(email)}>
-              <ListItemAvatar>
-                <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                  <PersonIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={email} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => handleListItemClick("addAccount")}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add account" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Dialog>
-  );
 }
 
 SimpleDialog.propTypes = {
@@ -73,7 +38,6 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -81,7 +45,6 @@ export default function SimpleDialogDemo() {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
   };
 
   return (
@@ -91,11 +54,7 @@ export default function SimpleDialogDemo() {
           <ResponsiveContainer width="100%" height="200%">
             <BarChartComponent />
           </ResponsiveContainer>
-        </div>
-        <div className="flex flex-col flex-grow p-6 space-y-10 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800">
-          <ResponsiveContainer width="100%" height="200%">
-            <PieChartComponent />
-          </ResponsiveContainer>
+          <p></p>
         </div>
       </div>
     </React.Fragment>
