@@ -8,15 +8,15 @@ const {
   deleteEmployee,
   getHoursByLocation,
   getTotalVisitsByLocation,
-  deleteTaskByIndex,
+  deleteTaskById,
 } = require("../controllers/employeeController");
 
 router.get("/", getUniqueEmployeeList);
-router.get("/:employeeId/tasks", getTasksByEmployeeId);
-router.put("/:employeeId/update", updateEmployee);
-router.delete("/:employeeId/delete", deleteEmployee);
+router.get("/tasks/:employeeId", getTasksByEmployeeId);
+router.put("/update/:employeeId", updateEmployee);
+router.delete("/delete/:employeeId", deleteEmployee);
 router.get("/hoursByLocation/:employeeId", getHoursByLocation);
 router.get("/visits-by-location", getTotalVisitsByLocation);
-router.delete("/:employeeId/tasks/:taskIndex", deleteTaskByIndex);
+router.delete("/tasks/:siteLocation/:employeeId/:taskIndex", deleteTaskById);
 
 module.exports = router;

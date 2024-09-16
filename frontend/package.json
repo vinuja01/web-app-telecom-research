@@ -8,6 +8,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.0.1",
     "@mui/material": "^6.0.1",
+    "@tabler/icons-react": "^3.17.0",
     "axios": "^1.7.7",
     "canvasjs-react-charts": "^1.0.5",
     "mdb-react-ui-kit": "^8.0.0",

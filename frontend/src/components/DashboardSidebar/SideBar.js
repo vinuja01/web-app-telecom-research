@@ -15,7 +15,7 @@ const SideBar = () => {
         <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
           <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div class="flex-1 px-3 bg-white divide-y space-y-1">
-              <ul class="space-y-2 pb-2">
+              <ul class="space-y-14 pb-5">
                 <li>
                   <form action="#" method="GET" class="lg:hidden">
                     <label for="mobile-search" class="sr-only">
@@ -59,6 +59,7 @@ const SideBar = () => {
                     <span class="ml-3">Dashboard</span>
                   </Link>
                 </li>
+
                 <li>
                   <Link
                     to="/employee"

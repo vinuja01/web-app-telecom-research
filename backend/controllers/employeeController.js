@@ -114,24 +114,33 @@ exports.getTotalVisitsByLocation = async (req, res) => {
   }
 };
 
-// Delete a specific task by index for an employee
-exports.deleteTaskByIndex = async (req, res) => {
+// Delete a specific task by _id within an employee's document
+exports.deleteTaskById = async (req, res) => {
+  const { employeeId, siteLocation, taskIndex } = req.params; // taskIndex should be the index of the task in the array
+
   try {
-    const { employeeId, taskIndex } = req.params;
-    const result = await Employee.updateOne(
-      { employeeId: employeeId },
-      { $unset: { [`tasksDone.${taskIndex}`]: 1 } }
+    // Pull the task at the given index by finding the task by its content, assuming the task content is unique
+    const taskToRemove = { $unset: {} }; // Prepare to unset the task index
+    taskToRemove.$unset[`tasksDone.${taskIndex}`] = 1; // Unset the specific task
+
+    // Update to unset the specific task index
+    const unsetResult = await Employee.updateOne(
+      { employeeId, siteLocation },
+      taskToRemove
     );
-    if (result.modifiedCount === 0) {
+
+    // After unsetting the task, remove all null items from the tasksDone array
+    const pullResult = await Employee.updateOne(
+      { employeeId, siteLocation },
+      { $pull: { tasksDone: null } }
+    );
+
+    if (unsetResult.modifiedCount === 0 || pullResult.modifiedCount === 0) {
       return res
         .status(404)
         .json({ message: "Task not found or already deleted." });
     }
 
-    await Employee.updateOne(
-      { employeeId: employeeId },
-      { $pull: { tasksDone: null } }
-    );
     res.status(200).json({ message: "Task deleted successfully." });
   } catch (err) {
     res.status(500).json({ message: err.message });
