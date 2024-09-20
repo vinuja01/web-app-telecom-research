@@ -15,6 +15,7 @@ import {
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -22,7 +23,7 @@ function Auth() {
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
-    setFormData({ email: "", password: "" });
+    setFormData({ name: "", email: "", password: "" });
   };
 
   const handleChange = (e) => {
@@ -67,6 +68,18 @@ function Auth() {
           <h2 className="fw-bold mb-5">{isLogin ? "Login" : "Signup"}</h2>
           <form onSubmit={handleSubmit}>
             <MDBRow>
+              {!isLogin && (
+                <MDBCol col="12">
+                  <MDBInput
+                    wrapperClass="mb-4"
+                    label="Name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                </MDBCol>
+              )}
               <MDBCol col="12">
                 <MDBInput
                   wrapperClass="mb-4"

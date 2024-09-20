@@ -36,6 +36,7 @@ exports.getCurrentFaultsBySiteId = async (req, res) => {
         $group: {
           _id: "$siteId",
           currentFaults: { $push: "$currentFaults" },
+          Date: { $first: "$Date" }, // Assuming date is in MaintenanceRecords array
         },
       },
     ]);
@@ -46,7 +47,12 @@ exports.getCurrentFaultsBySiteId = async (req, res) => {
         .json({ message: "No faults found for the specified siteId" });
     }
 
-    res.json({ siteId: result[0]._id, currentFaults: result[0].currentFaults });
+    // Format the response to include the site ID, faults, and maintenance date
+    res.json({
+      siteId: result[0]._id,
+      currentFaults: result[0].currentFaults,
+      Date: result[0].Date, // Extracting and showing the date
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -57,19 +63,20 @@ exports.deleteFaultBySiteId = async (req, res) => {
   try {
     const { siteId, fault } = req.params;
 
-    const result = await Site.updateOne(
+    const result = await Site.updateMany(
       { siteId: siteId },
       { $pull: { currentFaults: fault } }
     );
 
-    if (result.nModified === 0) {
-      return res
-        .status(404)
-        .json({ message: "Fault not found or already deleted." });
+    if (result.modifiedCount === 0) {
+      res.status(404).json({ message: "Fault not found or already deleted." });
+    } else {
+      res.json({
+        message: `Fault deleted successfully from ${result.modifiedCount} documents.`,
+      });
     }
-
-    res.json({ message: "Fault deleted successfully" });
   } catch (err) {
+    console.error("Error during deletion:", err);
     res.status(500).json({ message: err.message });
   }
 };

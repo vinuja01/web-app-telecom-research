@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import BarChart from "../DashboardEmployee/EmployerCRUD/BarChart";
+import Weather from "./Weather";
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -18,7 +19,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function DashboardHome() {
   return (
-    <div style={{ display: "flex", height: "100vh", paddingTop: "1px" }}>
+    <div
+      style={{
+        display: "flex",
+        height: "100vh",
+        paddingTop: "12px",
+        width: "115%",
+      }}
+    >
       {" "}
       {/* Assuming top bar height is 64px */}
       <SideBar />

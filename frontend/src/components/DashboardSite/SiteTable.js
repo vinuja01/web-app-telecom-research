@@ -15,7 +15,7 @@ const SiteTable = () => {
     axios
       .get("http://localhost:5000/sites/siteDetails")
       .then((response) => setSites(response.data))
-      .catch((error) => console.error("Error fetching sites: ", error));
+      .catch((error) => console.error("Error fetching sites:", error));
   }, []);
 
   const handleOpenMaintenance = (site) => {
@@ -23,14 +23,18 @@ const SiteTable = () => {
     setOpenMaintenance(true);
   };
 
-  const handleCloseMaintenance = () => setOpenMaintenance(false);
+  const handleCloseMaintenance = () => {
+    setOpenMaintenance(false);
+  };
 
   const handleOpenFaults = (site) => {
     setSelectedSite(site);
     setOpenFaults(true);
   };
 
-  const handleCloseFaults = () => setOpenFaults(false);
+  const handleCloseFaults = () => {
+    setOpenFaults(false);
+  };
 
   return (
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
@@ -45,12 +49,9 @@ const SiteTable = () => {
           </thead>
           <tbody>
             {sites.map((site) => (
-              <tr
-                key={site._id}
-                className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
-              >
-                <td className="p-3">{site._id}</td>
-                <td className="p-3">{site.location}</td>
+              <tr key={site.siteId}>
+                <td className="p-3">{site.siteId}</td>
+                <td className="p-3">{site.siteLocation}</td>
                 <td className="p-3 text-center">
                   <div className="flex space-x-2 justify-center">
                     <button
@@ -90,7 +91,7 @@ const SiteTable = () => {
           maxWidth="xl"
         >
           <DialogContent>
-            <Faults site={selectedSite} />
+            <Faults siteId={selectedSite ? selectedSite.siteId : null} />
           </DialogContent>
         </Dialog>
       </div>
