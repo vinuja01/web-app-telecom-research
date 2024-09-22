@@ -7,4 +7,6 @@ router.get("/user-assigns", userAssignController.getAllUserAssigns);
 router.put("/user-assigns/:id", userAssignController.updateUserAssign);
 router.delete("/user-assigns/:id", userAssignController.deleteUserAssign);
 
+router.post("/send-email", userAssignController.sendUserCredentials);
+
 module.exports = router;

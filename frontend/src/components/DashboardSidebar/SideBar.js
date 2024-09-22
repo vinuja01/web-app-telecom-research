@@ -10,17 +10,15 @@ const SideBar = () => {
       <aside
         id="sidebar"
         class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+        style={{ borderRadius: "10px" }}
         aria-label="Sidebar"
       >
-        <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
-          <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div class="flex-1 px-3 bg-white divide-y space-y-1">
+        <div class="relative flex-1 flex flex-col min-h-0 border-radius-7 border-gray-200 bg- pt-0">
+          <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto bg-gray-300">
+            <div class="flex-3 px-3 bg-gray divide-y space-y-1">
               <ul class="space-y-14 pb-5">
                 <li>
                   <form action="#" method="GET" class="lg:hidden">
-                    <label for="mobile-search" class="sr-only">
-                      Search
-                    </label>
                     <div class="relative">
                       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg

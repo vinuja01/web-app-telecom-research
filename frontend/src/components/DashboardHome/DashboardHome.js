@@ -22,13 +22,11 @@ function DashboardHome() {
     <div
       style={{
         display: "flex",
-        height: "100vh",
-        paddingTop: "12px",
+        height: "150vh",
+        paddingTop: "0px",
         width: "115%",
       }}
     >
-      {" "}
-      {/* Assuming top bar height is 64px */}
       <SideBar />
       <div
         style={{

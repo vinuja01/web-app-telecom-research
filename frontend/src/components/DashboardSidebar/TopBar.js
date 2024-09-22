@@ -3,11 +3,16 @@ import logo from "../../Assets/logo.jpg";
 
 const TopBar = () => {
   return (
-    <nav className="bg-white border-b border-gray-200 fixed z-10 w-full">
-      <div className="px-2 py-2 lg:px-3">
+    <nav
+      className="border-gray-300 fixed z-10 w-full bg-gray-300"
+      style={{ height: "50px" }}
+    >
+      {" "}
+      {/* Set specific height */}
+      <div className="px-2 flex h-full items-center lg:px-9">
         {" "}
-        {/* Reduced padding */}
-        <div className="flex items-center justify-between">
+        {/* Ensure div fills nav height */}
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center justify-start">
             <a
               href="#"
