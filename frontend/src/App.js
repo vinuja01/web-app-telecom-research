@@ -6,14 +6,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import Auth from "./components/Auth";
-//import Dashboard from "./components/Dashboard";
-import "./App.css";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import SideBar from "./components/DashboardSidebar/SideBar";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 import DashboardHome from "./components/DashboardHome/DashboardHome";
 import DashboardEmployee from "./components/DashboardEmployee/DashboardEmployee";
 import DashboardSite from "./components/DashboardSite/DashboardSite";
 import DashboardUser from "./components/DashboardUser/DashboardUser";
+import "./App.css";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 function App() {
   const isAuthenticated = () => {
@@ -21,15 +21,11 @@ function App() {
   };
 
   return (
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<Auth />} />
-
-    //   </Routes>
-    // </Router>
     <Router>
       <Routes>
         <Route path="/" element={<Auth />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route
           path="/dashboard"
           element={isAuthenticated() ? <DashboardHome /> : <Navigate to="/" />}

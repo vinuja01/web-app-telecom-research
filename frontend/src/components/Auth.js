@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   MDBBtn,
   MDBContainer,
@@ -77,6 +77,7 @@ function Auth() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    required
                   />
                 </MDBCol>
               )}
@@ -88,6 +89,7 @@ function Auth() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  required
                 />
               </MDBCol>
               <MDBCol col="12">
@@ -98,17 +100,35 @@ function Auth() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
+                  required
                 />
               </MDBCol>
             </MDBRow>
             <MDBBtn className="w-100 mb-4" size="md" type="submit">
               {isLogin ? "Login" : "Signup"}
             </MDBBtn>
-            <button type="button" className="btn btn-link" onClick={toggleForm}>
-              {isLogin
-                ? "Need to create an account?"
-                : "Already have an account?"}
-            </button>
+            {isLogin ? (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-link"
+                  onClick={toggleForm}
+                >
+                  Need to create an account?
+                </button>
+                <div className="mt-3">
+                  <Link to="/forgot-password">Forgot Password?</Link>
+                </div>
+              </>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-link"
+                onClick={toggleForm}
+              >
+                Already have an account?
+              </button>
+            )}
           </form>
         </MDBCardBody>
       </MDBCard>
