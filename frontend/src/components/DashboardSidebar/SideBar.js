@@ -226,11 +226,11 @@ const SideBar = () => {
 
                 <li>
                   <Link
-                    to="/logout"
+                    to="/"
                     className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group"
                     onClick={() => {
                       // Optionally, redirect to login page
-                      window.location.href = "/login";
+                      window.location.href = "/";
                     }}
                   >
                     <svg

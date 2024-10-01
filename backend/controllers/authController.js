@@ -5,8 +5,23 @@ const transporter = require("../config/nodemailer");
 const keys = require("../config/keys");
 const User = require("../models/User");
 
+// List of predefined user emails allowed to sign up
+const allowedEmails = [
+  "user1@gmail.com",
+  "user2@gmail.com",
+  "user3@gmail.com",
+  // Add more allowed emails as necessary
+];
+
 exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
+
+  // Check if the email is in the allowed list
+  if (!allowedEmails.includes(email)) {
+    return res
+      .status(403)
+      .json({ msg: "Registration is restricted to specific users only." });
+  }
 
   try {
     let user = await User.findOne({ email });
