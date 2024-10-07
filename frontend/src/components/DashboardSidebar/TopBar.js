@@ -1,11 +1,12 @@
 import React from "react";
 import logo from "../../Assets/logo.jpg";
+import site360 from "../../Assets/site360.png";
 
 const TopBar = () => {
   return (
     <nav
       className="border-gray-300 fixed z-10 w-full bg-gray-300"
-      style={{ height: "50px" }}
+      style={{ height: "60px" }}
     >
       {" "}
       {/* Set specific height */}
@@ -18,8 +19,9 @@ const TopBar = () => {
               href="#"
               className="text-xl font-bold flex items-center lg:ml-2.5"
             >
-              <img src={logo} className="h-10 mr-3 ml-3" alt="Logo" />
+              <img src={site360} className="h-10 mr-3 ml-3" alt="Logo" />
             </a>
+            <p>Site 360</p>
           </div>
         </div>
       </div>
