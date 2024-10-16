@@ -7,6 +7,7 @@ const cors = require("cors");
 const employeeRoutes = require("./routes/employeeRoutes");
 const siteRoutes = require("./routes/siteRoutes");
 const userAssignRoutes = require("./routes/userAssignRoutes");
+const alertRoutes = require("./routes/alertRoutes");
 
 const app = express();
 app.use(cors());
@@ -25,6 +26,7 @@ app.use("/auth", authRoutes);
 app.use("/employees", employeeRoutes);
 app.use("/sites", siteRoutes);
 app.use("/assignuser", userAssignRoutes);
+app.use("/alerts", alertRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

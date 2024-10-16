@@ -12,6 +12,7 @@ import DashboardHome from "./components/DashboardHome/DashboardHome";
 import DashboardEmployee from "./components/DashboardEmployee/DashboardEmployee";
 import DashboardSite from "./components/DashboardSite/DashboardSite";
 import DashboardUser from "./components/DashboardUser/DashboardUser";
+import EntranceAlerts from "./components/DashboardEntranceAlerts/EntranceAlerts";
 import "./App.css";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/employee" Component={DashboardEmployee}></Route>
         <Route path="/site" Component={DashboardSite}></Route>
         <Route path="/user assign" Component={DashboardUser}></Route>
+        <Route path="/entrance alerts" Component={EntranceAlerts}></Route>
       </Routes>
     </Router>
   );

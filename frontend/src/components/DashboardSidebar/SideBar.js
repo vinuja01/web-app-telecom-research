@@ -97,14 +97,14 @@ const SideBar = () => {
       <TopBar />
       <aside
         id="sidebar"
-        className="fixed hidden z-30 h-full top-4 bottom-7 left-2 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+        className="fixed hidden z-30 h-full top-4 bottom-9 left-2 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
         style={{ borderRadius: "12px" }}
         aria-label="Sidebar"
       >
-        <div className="relative flex-1 flex flex-col min-h-9 border-radius-10 border-gray-200 bg-gray-300 pt-0">
+        <div className="relative flex-1 flex flex-col min-h-10 border-radius-10 border-gray-200 bg-gray-300 pt-0">
           <div className="flex-3 flex flex-col pt-0 pb-0 overflow-y-auto">
-            <div className="flex-6 bg-gray divide-y space-y-3 ">
-              <ul className="space-y-14 space-x-0 pb-3">
+            <div className="flex-9 bg-gray divide-y space-y-7 ">
+              <ul className="space-y-14 space-x-0 pb-1">
                 <li>
                   <form action="#" method="GET" className="lg:hidden">
                     <div className="relative">
@@ -128,7 +128,7 @@ const SideBar = () => {
                     </div>
                   </form>
                 </li>
-                <div className=" flex flex-col items-start justify-center max-w-20 p-1 h-27 shadow-md rounded-xl sm:px-14 dark:bg-gray-50 dark:text-gray-800">
+                {/* <div className=" flex flex-col items-start justify-center max-w-20 p-1 h-27 shadow-md rounded-xl sm:px-14 dark:bg-gray-50 dark:text-gray-800">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -149,7 +149,7 @@ const SideBar = () => {
                       </h6>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <li>
                   <Link
                     to="/dashboard"
@@ -216,6 +216,30 @@ const SideBar = () => {
 
                     <span className="ml-3 flex-1 whitespace-nowrap">
                       Site Details
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/entrance alerts"
+                    className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.636 4.575a.75.75 0 0 1 0 1.061 9 9 0 0 0 0 12.728.75.75 0 1 1-1.06 1.06c-4.101-4.1-4.101-10.748 0-14.849a.75.75 0 0 1 1.06 0Zm12.728 0a.75.75 0 0 1 1.06 0c4.101 4.1 4.101 10.75 0 14.85a.75.75 0 1 1-1.06-1.061 9 9 0 0 0 0-12.728.75.75 0 0 1 0-1.06ZM7.757 6.697a.75.75 0 0 1 0 1.06 6 6 0 0 0 0 8.486.75.75 0 0 1-1.06 1.06 7.5 7.5 0 0 1 0-10.606.75.75 0 0 1 1.06 0Zm8.486 0a.75.75 0 0 1 1.06 0 7.5 7.5 0 0 1 0 10.606.75.75 0 0 1-1.06-1.06 6 6 0 0 0 0-8.486.75.75 0 0 1 0-1.06ZM9.879 8.818a.75.75 0 0 1 0 1.06 3 3 0 0 0 0 4.243.75.75 0 1 1-1.061 1.061 4.5 4.5 0 0 1 0-6.364.75.75 0 0 1 1.06 0Zm4.242 0a.75.75 0 0 1 1.061 0 4.5 4.5 0 0 1 0 6.364.75.75 0 0 1-1.06-1.06 3 3 0 0 0 0-4.243.75.75 0 0 1 0-1.061ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    <span className="ml-3 flex-1 whitespace-nowrap">
+                      Entrance Alerts
                     </span>
                   </Link>
                 </li>

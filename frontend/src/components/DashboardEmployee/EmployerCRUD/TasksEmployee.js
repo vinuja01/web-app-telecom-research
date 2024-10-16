@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import SortIcon from "@mui/icons-material/Sort";
 
 const TasksEmployee = ({ employee, handleClose }) => {
   const [tasks, setTasks] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc"); // initial sort order
 
   useEffect(() => {
     if (employee && employee._id) {
@@ -29,61 +29,88 @@ const TasksEmployee = ({ employee, handleClose }) => {
     }
   }, [employee]);
 
-  const handleDeleteTask = async (taskIndex, siteLocation, employeeId) => {
-    try {
-      // Construct the URL with proper parameters
-      const url = `http://localhost:5000/tasks/${siteLocation}/${employeeId}/${taskIndex}`;
-      const response = await axios.delete(url);
+  useEffect(() => {
+    // This effect runs whenever the sortOrder changes.
+    const sortedTasks = [...tasks].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+    });
+    setTasks(sortedTasks);
+  }, [sortOrder]);
 
-      if (response.status === 200) {
-        // Remove the task from the state to update the UI
-        setTasks((prevTasks) =>
-          prevTasks.filter((_, index) => index !== taskIndex)
-        );
-        console.log("Task deleted successfully:", taskIndex);
-      } else {
-        console.error("Failed to delete task:", response.data.message);
-      }
-    } catch (error) {
-      console.error("Error deleting task:", taskIndex, error);
-    }
+  const handleSortClick = () => {
+    setSortOrder((prevSortOrder) => (prevSortOrder === "asc" ? "desc" : "asc"));
   };
 
   return (
-    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
-      <h2 className="mb-4 text-2xl font-semibold leading-tight">
-        Tasks for Employee {employee?.employeeName}
-      </h2>
+    <div
+      style={{ backgroundColor: "#EEEEEE" }}
+      className="container p-2 mx-auto sm:p-4 dark:text-gray-800"
+    >
+      <div className="flex justify-center items-center w-full">
+        <h2 className="mb-4 text-2xl font-semibold leading-tight">
+          Tasks for Employee {employee?.employeeName}
+        </h2>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs">
-          <thead className="dark:bg-gray-300">
-            <tr className="text-left">
-              <th className="p-3">Task</th>
-              <th className="p-3">Date</th>
-              <th className="p-3">Site Location</th>
-              <th className="p-3">Actions</th>
+          <thead
+            style={{ backgroundColor: "#508C9B" }}
+            className="dark:bg-gray-300"
+          >
+            <tr
+              style={{
+                color: "white",
+                fontSize: "15px",
+                borderTopLeftRadius: "7px",
+                borderTopRightRadius: "7px",
+              }}
+              className="text-left"
+            >
+              <th className="p-3" style={{ color: "white", fontSize: "15px" }}>
+                Index
+              </th>
+              <th className="p-3" style={{ color: "white", fontSize: "15px" }}>
+                Date
+                <IconButton onClick={handleSortClick} color="secondary">
+                  <SortIcon />
+                </IconButton>
+              </th>
+              <th className="p-3" style={{ color: "white", fontSize: "15px" }}>
+                Site Location
+              </th>
+              <th className="p-3" style={{ color: "white", fontSize: "15px" }}>
+                Task
+              </th>
             </tr>
           </thead>
           <tbody>
             {tasks.map((task, index) => (
-              <tr key={task._id}>
-                <td className="p-3">{task.task}</td>
-                <td className="p-3">
+              <tr key={index}>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "15px" }}
+                >
+                  {index + 1}
+                </td>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "15px" }}
+                >
                   {new Date(task.date).toLocaleDateString()}
                 </td>
-                <td className="p-3">{task.siteLocation}</td>
-                <td className="p-3 text-center">
-                  <Stack direction="row" spacing={2}>
-                    <Button
-                      variant="outlined"
-                      startIcon={<DeleteIcon />}
-                      onClick={() =>
-                        handleDeleteTask(index, task.siteLocation, employee._id)
-                      }
-                    >
-                      Delete
-                    </Button>
-                  </Stack>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "15px" }}
+                >
+                  {task.siteLocation}
+                </td>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "15px" }}
+                >
+                  {task.task}
                 </td>
               </tr>
             ))}

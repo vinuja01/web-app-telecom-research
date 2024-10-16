@@ -27,19 +27,23 @@ const EmployeeTable = () => {
   }, []);
 
   const handleOpenView = (employeeId) => {
-    axios
-      .get(`http://localhost:5000/employees/hoursByLocation/${employeeId}`)
-      .then((response) => {
-        const dataPoints = response.data.map((item) => ({
-          label: item._id, // location name
-          y: item.totalHours,
-        }));
-        setSelectedEmployeeData(dataPoints);
-        setOpenView(true);
-      })
-      .catch((error) =>
-        console.error("Error fetching employee details: ", error)
-      );
+    const employee = employees.find((emp) => emp._id === employeeId);
+    if (employee) {
+      setSelectedEmployee(employee); // Set the selected employee here
+      axios
+        .get(`http://localhost:5000/employees/hoursByLocation/${employeeId}`)
+        .then((response) => {
+          const dataPoints = response.data.map((item) => ({
+            label: item._id, // location name
+            y: item.totalHours,
+          }));
+          setSelectedEmployeeData(dataPoints);
+          setOpenView(true);
+        })
+        .catch((error) =>
+          console.error("Error fetching employee details: ", error)
+        );
+    }
   };
 
   const handleCloseView = () => setOpenView(false);
@@ -66,49 +70,87 @@ const EmployeeTable = () => {
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs text-center">
-          <thead className="dark:bg-gray-300">
+          <thead style={{ backgroundColor: "#508C9B" }}>
             <tr>
-              <th className="p-3">Employee ID</th>
-              <th className="p-3">Employee Name</th>
-              <th className="p-3">Designation</th>
-              <th className="p-3">Actions</th>
+              <th
+                className="p-3"
+                style={{
+                  color: "white",
+                  fontSize: "15px",
+                  borderTopLeftRadius: "7px",
+                }}
+              >
+                Employee ID
+              </th>
+              <th className="p-3" style={{ color: "white", fontSize: "15px" }}>
+                Employee Name
+              </th>
+              <th className="p-3" style={{ color: "white", fontSize: "15px" }}>
+                Designation
+              </th>
+              <th
+                className="p-3"
+                style={{
+                  color: "white",
+                  fontSize: "15px",
+                  borderTopRightRadius: "4px",
+                }}
+              >
+                Actions
+              </th>
             </tr>
           </thead>
+
           <tbody>
             {employees.map((employee) => (
               <tr
                 key={employee._id}
                 className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
               >
-                <td className="p-3">{employee._id}</td>
-                <td className="p-3">{employee.employeeName}</td>
-                <td className="p-3">{employee.designation}</td>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "14px" }}
+                >
+                  {employee._id}
+                </td>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "14px" }}
+                >
+                  {employee.employeeName}
+                </td>
+                <td
+                  className="p-3"
+                  style={{ color: "black", fontSize: "14px" }}
+                >
+                  {employee.designation}
+                </td>
                 <td className="p-3 text-center">
                   <div className="flex space-x-2 justify-center">
                     <button
                       type="button"
-                      className="px-4 py-1 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100"
+                      className="px-4 py-1 font-semibold rounded-full dark:bg-green-800 dark:text-gray-100"
                       onClick={() => handleOpenView(employee._id)}
                     >
                       View
                     </button>
                     <button
                       type="button"
-                      className="px-4 py-1 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100"
+                      className="px-4 py-1 font-semibold rounded-full dark:bg-purple-800 dark:text-gray-100"
                       onClick={() => handleOpenTasks(employee)}
                     >
                       Tasks
                     </button>
                     <button
                       type="button"
-                      className="px-4 py-1 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100"
+                      className="px-4 py-1 font-semibold rounded-full dark:bg-blue-800 dark:text-gray-100"
                       onClick={() => handleOpenUpdate(employee)}
                     >
                       Update
                     </button>
                     <button
                       type="button"
-                      className="px-4 py-1 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100"
+                      className="px-4 py-1 font-semibold rounded-full dark:bg-red-800 dark:text-gray-100"
                       onClick={() => handleOpenDelete(employee)}
                     >
                       Delete
@@ -126,7 +168,12 @@ const EmployeeTable = () => {
           maxWidth="xl"
         >
           <DialogContent>
-            <BarChartComponent dataPoints={selectedEmployeeData} />
+            <BarChartComponent
+              dataPoints={selectedEmployeeData}
+              employeeName={
+                selectedEmployee ? selectedEmployee.employeeName : ""
+              }
+            />
           </DialogContent>
         </Dialog>
         <Dialog
