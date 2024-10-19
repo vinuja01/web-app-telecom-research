@@ -38,32 +38,80 @@ const SiteTable = () => {
 
   return (
     <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+      <div className="text-1xl font-bold text-red">
+        <p>
+          <i>Total Telecommunication Sites: {sites.length}</i>
+        </p>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs text-center">
-          <thead className="dark:bg-gray-300">
+          <thead
+            style={{ backgroundColor: "#508C9B" }}
+            className="dark:bg-gray-300"
+          >
             <tr>
-              <th className="p-3">Site ID</th>
-              <th className="p-3">Site Location</th>
-              <th className="p-3">Actions</th>
+              <th
+                style={{
+                  color: "white",
+                  fontSize: "15px",
+                  borderTopLeftRadius: "7px",
+                }}
+                className="p-3"
+              >
+                Site ID
+              </th>
+              <th style={{ color: "white", fontSize: "15px" }} className="p-3">
+                Site Location
+              </th>
+              <th
+                style={{
+                  color: "white",
+                  fontSize: "15px",
+                  borderTopRightRadius: "7px",
+                }}
+                className="p-3"
+              >
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
             {sites.map((site) => (
-              <tr key={site.siteId}>
-                <td className="p-3">{site.siteId}</td>
-                <td className="p-3">{site.siteLocation}</td>
-                <td className="p-3 text-center">
+              <tr
+                key={site.siteId}
+                className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50"
+              >
+                <td
+                  style={{
+                    color: "black",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                  }}
+                  className="p-3"
+                >
+                  {site.siteId}
+                </td>
+                <td
+                  style={{ color: "black", fontSize: "14px" }}
+                  className="p-3"
+                >
+                  {site.siteLocation}
+                </td>
+                <td
+                  style={{ color: "black", fontSize: "14px" }}
+                  className="p-3 text-center"
+                >
                   <div className="flex space-x-2 justify-center">
                     <button
                       type="button"
-                      className="px-4 py-1 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100"
+                      className="px-4 py-1 font-semibold rounded-full dark:bg-blue-800 dark:text-gray-100"
                       onClick={() => handleOpenMaintenance(site)}
                     >
                       Maintenance Records
                     </button>
                     <button
                       type="button"
-                      className="px-4 py-1 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100"
+                      className="px-4 py-1 font-semibold rounded-full dark:bg-red-800 dark:text-gray-100"
                       onClick={() => handleOpenFaults(site)}
                     >
                       Faults

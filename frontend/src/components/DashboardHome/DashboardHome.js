@@ -28,13 +28,13 @@ function DashboardHome() {
               </div>
             </main>
 
-            <p class="text-center text-sm text-gray-500 my-10">
+            {/* <p class="text-center text-sm text-gray-500 my-10">
               &copy; 2023{" "}
               <a href="#" class="hover:underline" target="_blank">
                 NobleAged
               </a>
               . All rights reserved.
-            </p>
+            </p> */}
           </div>
         </div>
         <script async defer src="https://buttons.github.io/buttons.js"></script>

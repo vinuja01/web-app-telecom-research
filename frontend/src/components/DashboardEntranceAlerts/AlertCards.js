@@ -19,27 +19,39 @@ export default function AlertCards() {
 
   return (
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex-shrink-0">
-          <span className="text-xl sm:text-2xl leading-none font-bold text-gray-900">
-            Telecommunication Sites Entrance Alerts
+      <div class="flex items-center justify-center mb-2">
+        <div
+          className="flex justify-center items-center mb-4"
+          style={{ height: "100%" }}
+        >
+          {" "}
+          {/* Ensures full height centering */}
+          <span
+            style={{ color: "#074173" }}
+            className="text-xl sm:text-2xl font-bold"
+          >
+            Telecommunication Site Entrance Alerts
           </span>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {alerts.map((alert, index) => (
-          <div key={index} className="bg-gray-100 p-4 rounded-lg shadow">
-            <p>
+          <div
+            key={index}
+            className=" p-4 rounded-lg shadow transition duration-300 ease-in-out hover:shadow-lg"
+            style={{ backgroundColor: "#E9EED9" }}
+          >
+            <p style={{ color: "#6F42C1 " }}>
               <strong>User:</strong> {alert.user}
             </p>
-            <p>
+            <p style={{ color: "red" }}>
               <strong>Confidence:</strong> {alert.confidence}%
             </p>
-            <p>
+            <p style={{ color: "#007BFF" }}>
               <strong>Time:</strong>{" "}
               {new Date(alert.timestamp).toLocaleString()}
             </p>
-            <p>
+            <p style={{ color: "#28A745 " }}>
               <strong>Location:</strong> Hanwella
             </p>
           </div>

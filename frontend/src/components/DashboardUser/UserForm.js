@@ -175,15 +175,16 @@ const UserForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center text-center dark:bg-gray-50 dark:text-gray-800 p-4">
+    <div className="flex items-center justify-center text-center dark:bg-red-50 dark:text-gray-800 p-4">
       <form
         noValidate=""
         onSubmit={handleAssignUser}
-        className="flex flex-col w-full max-w-lg p-12 rounded shadow-lg dark:text-gray-800 bg-white dark:bg-gray-700"
+        className="flex flex-col w-full max-w-lg p-12 rounded shadow-lg dark:text-gray-800 bg-E9EED9"
       >
         <label
           htmlFor="username"
-          className="self-start text-xs font-semibold text-black"
+          className="self-start text-xs font-semibold"
+          style={{ color: "#536493" }} // Primary color for label text
         >
           Username
         </label>
@@ -193,11 +194,18 @@ const UserForm = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className="flex items-center h-12 px-4 mt-2 rounded text-black focus:outline-none focus:ring-2 focus:ring-violet-600"
+          className="flex items-center h-12 px-4 mt-2 rounded"
+          style={{
+            backgroundColor: "#E4E0E1",
+            color: "black",
+            borderColor: "#536493",
+            borderWidth: "1px",
+          }} // Tertiary color for input background, primary for border
         />
         <label
           htmlFor="password"
-          className="self-start mt-3 text-xs font-semibold text-black"
+          className="self-start mt-3 text-xs font-semibold"
+          style={{ color: "#536493" }} // Primary color for label text
         >
           Password
         </label>
@@ -207,18 +215,30 @@ const UserForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="flex items-center h-12 px-4 mt-2 rounded text-black focus:outline-none focus:ring-2 focus:ring-violet-600"
+          className="flex items-center h-12 px-4 mt-2 rounded"
+          style={{
+            backgroundColor: "#E4E0E1",
+            color: "black",
+            borderColor: "#536493",
+            borderWidth: "1px",
+          }} // Tertiary color for input background, primary for border
         />
         <button
           type="submit"
-          className="flex items-center justify-center h-12 px-6 mt-8 text-sm font-semibold rounded bg-violet-600 text-gray-50 hover:bg-violet-700 transition-colors"
+          className="flex items-center justify-center h-12 px-6 mt-8 text-sm font-semibold rounded"
+          style={{ backgroundColor: "#536493", color: "#E9EED9" }} // Primary color for button, secondary for text
         >
           Assign User
         </button>
         <button
           type="button"
           onClick={handleOpenViewUsers}
-          className="flex items-center justify-center h-12 px-6 mt-4 text-sm font-semibold rounded bg-violet-600 text-gray-50 hover:bg-violet-700 transition-colors"
+          className="flex items-center justify-center h-12 px-6 mt-4 text-sm font-semibold rounded"
+          style={{
+            backgroundColor: "#536493",
+            color: "#E9EED9",
+            marginTop: "16px",
+          }} // Primary color for button, secondary for text
         >
           View Users List
         </button>
@@ -232,6 +252,25 @@ const UserForm = () => {
         maxWidth="md"
       >
         <DialogContent>
+          <div className="mb-4">
+            <div class="flex items-center justify-center mb-1">
+              <div
+                className="flex justify-center items-center mb-1"
+                style={{ height: "90%" }}
+              >
+                {" "}
+                {/* Ensures full height centering */}
+                <span
+                  style={{ color: "#074173" }}
+                  className="text-xl sm:text-2xl font-bold"
+                >
+                  Assigned Users List
+                </span>
+              </div>
+            </div>
+            <h5>Total Mobile Users: {users.length}</h5>{" "}
+            {/* Display total user count */}
+          </div>
           <table className="min-w-full text-xs text-center">
             <thead className="dark:bg-gray-300">
               <tr>

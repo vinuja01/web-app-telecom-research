@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../Assets/logo.jpg";
 import site360 from "../../Assets/site360.png";
+import image from "../../Assets/image.png";
 // import userIcon from "../../Assets/user-icon.png"; // Assuming you have a user icon asset
 
 const TopBar = () => {
@@ -37,27 +38,26 @@ const TopBar = () => {
 
   return (
     <nav
-      className="border-gray-300 fixed z-50 w-full bg-gray-300"
-      style={{ height: "60px" }}
+      style={{ backgroundColor: "#3C5B6F", height: "65px" }}
+      className="border-gray-300 fixed z-65 w-full bg-gray-300"
     >
-      <div className="px-4 flex h-full items-center justify-between">
-        <div className="flex items-center">
-          <img src={site360} className="h-10 mr-3" alt="Site 360 Logo" />
-          <p className="text-xl font-bold">Site 360</p>
+      <div className="px-5 flex h-full items-center justify-between">
+        <div className="flex items-center ml-12">
+          <img src={site360} className="h-12 mr-2" alt="Site 360 Logo" />
         </div>
+        <div>
+          <p className="text-3xl font-bold text-white">Site 360°</p>
+        </div>
+
         {loading ? (
           <div>Loading...</div>
         ) : error ? (
           <div>Error: {error}</div>
         ) : (
           <div className="flex items-center">
-            <img
-              src={site360}
-              alt="User"
-              className="h-8 w-8 rounded-full mr-2"
-            />
+            <img src={image} alt="User" className="h-8 w-8 rounded-full mr-2" />
             <div className="text-right">
-              <div className="text-xs font-semibold">
+              <div className="text-xs font-bold text-white">
                 {user ? user.name : "No User"}
               </div>
             </div>

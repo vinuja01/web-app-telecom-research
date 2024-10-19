@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { PieChart, Pie, Tooltip, Cell, Legend } from "recharts";
 
-const data = [
-  { name: "series A", value: 10 },
-  { name: "series B", value: 15 },
-  { name: "series C", value: 2 },
-  { name: "series D", value: 10 },
-];
-
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const PieChartComponent = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/employees/visits-by-location"
+        );
+        const formattedData = response.data.map((item) => ({
+          name: item._id,
+          value: item.totalVisits,
+        }));
+        setData(formattedData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <PieChart width={400} height={400}>
       <Pie

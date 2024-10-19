@@ -25,7 +25,10 @@ const UpdateEmployee = ({ employee }) => {
   };
 
   return (
-    <div className="flex items-center justify-center text-center dark:bg-gray-50 dark:text-black-800">
+    <div
+      style={{ backgroundColor: "#BED7DC" }}
+      className="flex items-center justify-center text-center dark:bg-gray-50 dark:text-black-800"
+    >
       <form
         noValidate=""
         action=""
@@ -58,7 +61,7 @@ const UpdateEmployee = ({ employee }) => {
 
         <button
           type="submit"
-          className="flex items-center justify-center h-12 px-6 mt-8 text-sm font-semibold rounded dark:bg-violet-600 dark:text-gray-50"
+          className="flex items-center justify-center h-12 px-6 mt-8 text-sm font-semibold rounded dark:bg-blue-600 dark:text-gray-50"
         >
           Update
         </button>

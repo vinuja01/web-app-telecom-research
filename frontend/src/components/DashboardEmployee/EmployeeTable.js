@@ -67,7 +67,12 @@ const EmployeeTable = () => {
   const handleCloseDelete = () => setOpenDelete(false);
 
   return (
-    <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+    <div className="container p-1 mx-auto sm:p-4 dark:text-gray-800">
+      <div>
+        <p className="text-1xl font-bold text-red">
+          <i>Total Maintenance Employees: {employees.length}</i>
+        </p>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full text-xs text-center">
           <thead style={{ backgroundColor: "#508C9B" }}>
@@ -109,7 +114,11 @@ const EmployeeTable = () => {
               >
                 <td
                   className="p-3"
-                  style={{ color: "black", fontSize: "14px" }}
+                  style={{
+                    color: "black",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                  }}
                 >
                   {employee._id}
                 </td>
