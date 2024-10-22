@@ -50,7 +50,7 @@ const TasksEmployee = ({ employee, handleClose }) => {
     >
       <div className="flex justify-center items-center w-full">
         <h2 className="mb-4 text-2xl font-semibold leading-tight">
-          Tasks for Employee {employee?.employeeName}
+          Tasks Done By Employee {employee?.employeeName}
         </h2>
       </div>
       <div className="overflow-x-auto">

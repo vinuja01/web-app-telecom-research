@@ -20,7 +20,6 @@ const DeleteEmployee = ({ employee, onClose, onEmployeeDeleted }) => {
       })
       .catch((error) => {
         alert("Failed to delete employee!");
-        console.error("Error deleting employee:", error);
       });
   };
 
