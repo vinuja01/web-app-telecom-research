@@ -12,7 +12,6 @@ const EmployeeView = () => {
         style={{ height: "100%" }}
       >
         {" "}
-        {/* Ensures full height centering */}
         <span
           style={{ color: "#074173" }}
           className="text-xl sm:text-2xl font-bold"
