@@ -38,7 +38,14 @@ const TopBar = () => {
 
   return (
     <nav
-      style={{ backgroundColor: "#3C5B6F", height: "65px" }}
+      style={{
+        backgroundColor: "#3C5B6F",
+        height: "65px",
+        width: "100%", // Ensure the bar extends full width
+        position: "fixed", // This makes the nav bar fixed at the top
+        top: 0, // Aligns the bar at the top of the viewport
+        zIndex: 1000, // Ensures it stays on top of other content
+      }}
       className="border-gray-300 fixed z-65 w-full bg-gray-300"
     >
       <div className="px-5 flex h-full items-center justify-between">

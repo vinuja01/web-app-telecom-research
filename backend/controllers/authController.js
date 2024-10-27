@@ -7,7 +7,7 @@ const User = require("../models/User");
 
 // List of predefined user emails allowed to sign up
 const allowedEmails = [
-  "user1@gmail.com",
+  "vinujayasinghe01@gmail.com",
   "user2@gmail.com",
   "user3@gmail.com",
   // Add more allowed emails as necessary
